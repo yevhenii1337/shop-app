@@ -1,8 +1,8 @@
 import * as React from "react";
 import styles from "./header.module.scss";
-import { Navbar } from "../../navbar";
+import { Navbar } from "./navbar";
 import { useTheme } from "../../../theme/useTheme";
-import { Logo } from "../../logo";
+import { Logo } from "../logo";
 import { useSelector, useDispatch } from "react-redux";
 import { toggleSideCart } from "../../../store/layoutSlice";
 import { RootState } from "../../../store/store";

@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { FaFacebook, FaInstagram } from 'react-icons/fa';
 import styles from './footer.module.scss'
 
-export const Footer = () => {
+export const Footer: FC = () => {
   return (
     <footer>
       <div className={styles.socialIcons}>
