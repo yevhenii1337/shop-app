@@ -3,6 +3,7 @@
   height: calc(100vh - 100px);
   overflow: auto;
   padding: 1rem 0;
+  padding: 1rem;
 }
 
 .productsContainer {
@@ -11,6 +12,7 @@
   padding: 1rem;
   justify-content: center;
   gap: 16px;
+  margin-bottom: 1rem;
 }
 
 .product-link {

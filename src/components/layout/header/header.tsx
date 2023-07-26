@@ -4,7 +4,7 @@ import { Navbar } from "./navbar";
 import { Logo } from "../logo";
 import { useDispatch } from "react-redux";
 import { toggleSideCart } from "../../../store/layoutSlice";
-import { ThemeSwitch } from "../theme-switch";
+import { ThemeSwitch } from "../../common/theme-switch";
 import { FaShoppingCart } from "react-icons/fa";
 
 export const Header: React.FC = () => {

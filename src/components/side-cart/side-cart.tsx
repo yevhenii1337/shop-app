@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback, useMemo } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
   removeFromCart,
@@ -12,8 +12,12 @@ import { FiMinus, FiPlus, FiX } from "react-icons/fi";
 import styles from "./side-cart.module.scss";
 import classNames from "classnames";
 import { toggleSideCart } from "../../store/layoutSlice";
+import { useSnackbar } from "react-simple-snackbar";
 
 export const SideCart: React.FC = () => {
+  const [openSnackbar] = useSnackbar({
+    position: "top-center",
+  });
   const isSideCartOpen = useSelector(
     (state: RootState) => state.layout.isSideCartOpen
   );
@@ -21,31 +25,40 @@ export const SideCart: React.FC = () => {
   const cartProducts = useSelector(selectCartProducts);
   const dispatch = useDispatch();
 
-  const handleRemoveFromCart = (productId: number) => {
+  const handleRemoveFromCart = useCallback((productId: number) => {
     dispatch(removeFromCart(productId));
-  };
+  }, []);
 
-  const handleToggleSideCart = () => {
-    dispatch(toggleSideCart()); // Використовуйте action creator для зміни стану
-  };
+  const handleToggleSideCart = useCallback(() => {
+    dispatch(toggleSideCart());
+  }, []);
 
-  const handleClearCart = () => {
+  const handleClearCart = useCallback(() => {
     dispatch(clearCart());
-  };
+  }, []);
 
-  const handleIncreaseQuantity = (productId: number) => {
+  const handleCheckout = useCallback(() => {
+    handleClearCart();
+    openSnackbar("You bought a products!");
+  }, []);
+
+  const handleIncreaseQuantity = useCallback((productId: number) => {
     dispatch(increaseQuantity(productId));
-  };
+  }, []);
 
-  const handleDecreaseQuantity = (productId: number) => {
+  const handleDecreaseQuantity = useCallback((productId: number) => {
     dispatch(decreaseQuantity(productId));
-  };
+  }, []);
 
-  const cartTotal = cartProducts.reduce(
-    (total, product) => total + product.price * product.quantity,
-    0
+  const cartTotal = useMemo(
+    () =>
+      cartProducts.reduce(
+        (total, product) => total + product.price * product.quantity,
+        0
+      ),
+    [cartProducts]
   );
-  console.log(isSideCartOpen);
+
   return (
     <div
       className={classNames(styles.sideCart, { [styles.open]: isSideCartOpen })}
@@ -111,7 +124,7 @@ export const SideCart: React.FC = () => {
               ))}
             </div>
             <div className={styles.cartTotal}>Total: ${cartTotal}</div>
-            <button className={styles.checkoutBtn} onClick={handleClearCart}>
+            <button className={styles.checkoutBtn} onClick={handleCheckout}>
               Checkout
             </button>
           </>

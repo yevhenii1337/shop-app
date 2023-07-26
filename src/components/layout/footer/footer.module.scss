@@ -1,24 +1,24 @@
 footer {
-    margin-top: auto;
-    background: var(--secondary-color);
-    padding: 10px;
-    display: flex;
-    height: 50px;
-    width: 100%;
-    justify-content: center;
-  }
-  
-  .socialIcons {
-    display: flex;
-    gap: 20px;
-    font-size: 24px;
-  }
-  
-  .socialIcons a {
-    color: white;
-    transition: color 0.3s ease;
-  }
-  
-  .socialIcons a:hover {
-    color: #007bff;
-  }
+  margin-top: auto;
+  background: var(--secondary-color);
+  padding: 10px;
+  display: flex;
+  height: 50px;
+  width: 100%;
+  justify-content: center;
+}
+
+.socialIcons {
+  display: flex;
+  gap: 20px;
+  font-size: 24px;
+}
+
+.socialIcons a {
+  color: white;
+  transition: color 0.3s ease;
+}
+
+.socialIcons a:hover {
+  color: #007bff;
+}

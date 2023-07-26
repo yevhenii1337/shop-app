@@ -1,7 +1,6 @@
 import { FC } from "react";
 import { Link } from "../../../common/link";
 import styles from "./navbar.module.scss";
-import { ThemeSwitch } from "../../theme-switch";
 
 export const Navbar: FC = () => {
   return (
