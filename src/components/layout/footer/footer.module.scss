@@ -1,0 +1,21 @@
+footer {
+    background: var(--secondary-color);
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .socialIcons {
+    display: flex;
+    gap: 20px;
+    font-size: 24px;
+  }
+  
+  .socialIcons a {
+    color: white;
+    transition: color 0.3s ease;
+  }
+  
+  .socialIcons a:hover {
+    color: #007bff;
+  }

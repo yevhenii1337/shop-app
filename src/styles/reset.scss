@@ -1,0 +1,23 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+input,
+button,
+textarea,
+select {
+  margin: 0;
+  font: inherit;
+}
+
+a {
+  /* Сбрасываем цвет ссылки */
+  color: inherit;
+  /* Возвращаем подчеркивание ссылки */
+  text-decoration: underline;
+  /* Если требуется, можно также убрать другие стили, например, фоновый цвет и т.д. */
+  background-color: transparent;
+  /* Если есть дополнительные стили, которые нужно сбросить, добавьте их здесь */
+}

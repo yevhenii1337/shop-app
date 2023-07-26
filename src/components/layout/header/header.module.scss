@@ -1,0 +1,28 @@
+.header {
+    display: flex;
+    align-items: center;
+    height: 50px;
+    width: 100%;
+    padding: 10px;
+    background: var(--secondary-color);
+  }
+
+  .logoContainer {
+    display: flex;
+    column-gap: 10px;
+  }
+
+  .openCartBtn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+  }
+
+  .cartIcon {
+    font-size: 24px;
+    margin-right: 8px;
+    color: white;
+  }
