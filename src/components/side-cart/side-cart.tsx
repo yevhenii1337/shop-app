@@ -4,11 +4,14 @@ import {
   removeFromCart,
   clearCart,
   selectCartProducts,
+  decreaseQuantity,
+  increaseQuantity,
 } from "../../store/cartSlice";
 import { RootState } from "../../store/store";
-import { FiX } from "react-icons/fi";
+import { FiMinus, FiPlus, FiX } from "react-icons/fi";
 import styles from "./side-cart.module.scss";
 import classNames from "classnames";
+import { toggleSideCart } from "../../store/layoutSlice";
 
 export const SideCart: React.FC = () => {
   const isSideCartOpen = useSelector(
@@ -22,52 +25,93 @@ export const SideCart: React.FC = () => {
     dispatch(removeFromCart(productId));
   };
 
+  const handleToggleSideCart = () => {
+    dispatch(toggleSideCart()); // Використовуйте action creator для зміни стану
+  };
+
   const handleClearCart = () => {
     dispatch(clearCart());
+  };
+
+  const handleIncreaseQuantity = (productId: number) => {
+    dispatch(increaseQuantity(productId));
+  };
+
+  const handleDecreaseQuantity = (productId: number) => {
+    dispatch(decreaseQuantity(productId));
   };
 
   const cartTotal = cartProducts.reduce(
     (total, product) => total + product.price * product.quantity,
     0
   );
-console.log(isSideCartOpen)
+  console.log(isSideCartOpen);
   return (
     <div
       className={classNames(styles.sideCart, { [styles.open]: isSideCartOpen })}
     >
-      <div className="side-cart">
-        <button className="close-btn" onClick={handleClearCart}>
+      <div style={{ width: "100%" }}>
+        <button className={styles.closeBtn} onClick={handleToggleSideCart}>
           <FiX />
         </button>
         <h2>Cart</h2>
         {cartProducts.length === 0 ? (
-          <div className="empty-cart">Cart is empty</div>
+          <div className={styles.emtyCard}>Cart is empty</div>
         ) : (
           <>
             <div className={styles.cartItems}>
               {cartProducts.map((product) => (
-                <div key={product.id} className="cart-item">
-                  <img
-                    src={product.image}
-                    alt={product.title}
-                    className="cart-item-image"
-                  />
-                  <div className="cart-item-details">
-                    <h3>{product.title}</h3>
-                    <p>Price: ${product.price}</p>
-                    <p>Quantity: {product.quantity}</p>
+                <div key={product.id} className={styles.cartItem}>
+                  <div style={{ width: "100%" }}>
+                    <img
+                      src={product.image}
+                      alt={product.title}
+                      className={styles.cartItemImage}
+                    />
+
+                    <div className={styles.cartItemDerails}>
+                      <h3>{product.title}</h3>
+                      <p>Price: ${product.price}</p>
+                      <p>Quantity: {product.quantity}</p>
+                    </div>
                   </div>
-                  <button
-                    className="remove-btn"
-                    onClick={() => handleRemoveFromCart(product.id)}
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "space-between",
+                      alignItems: "center",
+                      width: "100%",
+                    }}
                   >
-                    Remove
-                  </button>
+                    <div className={styles.quantitySelector}>
+                      <button
+                        className={styles.quantityBtn}
+                        onClick={() => handleDecreaseQuantity(product.id)}
+                      >
+                        <FiMinus />
+                      </button>
+                      <span className={styles.quantity}>
+                        {product.quantity}
+                      </span>
+                      <button
+                        className={styles.quantityBtn}
+                        onClick={() => handleIncreaseQuantity(product.id)}
+                      >
+                        <FiPlus />
+                      </button>
+                    </div>
+                    <button
+                      className={styles.removeBtn}
+                      onClick={() => handleRemoveFromCart(product.id)}
+                    >
+                      Remove
+                    </button>
+                  </div>
                 </div>
               ))}
             </div>
-            <div className="cart-total">Total: ${cartTotal}</div>
-            <button className="checkout-btn" onClick={handleClearCart}>
+            <div className={styles.cartTotal}>Total: ${cartTotal}</div>
+            <button className={styles.checkoutBtn} onClick={handleClearCart}>
               Checkout
             </button>
           </>

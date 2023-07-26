@@ -1,4 +1,4 @@
-import { useState, FC } from 'react';
+import { FC } from 'react';
 import { useTheme } from '../../../theme/useTheme'
 import styles from './theme-switch.module.scss';
 import { Theme } from '../../../theme/ThemeContext';

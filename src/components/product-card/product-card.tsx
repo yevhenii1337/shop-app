@@ -13,7 +13,7 @@ interface Product {
     product: Product;
   }
 
-const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
+export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   return (
     <Link to={`/products/${product.id}`} className={styles['product-link']}>
     <div className={styles['product-card']}>
@@ -24,5 +24,3 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   </Link>
   );
 };
-
-export default ProductCard;

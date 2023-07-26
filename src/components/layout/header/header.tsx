@@ -1,24 +1,18 @@
 import * as React from "react";
 import styles from "./header.module.scss";
 import { Navbar } from "./navbar";
-import { useTheme } from "../../../theme/useTheme";
 import { Logo } from "../logo";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { toggleSideCart } from "../../../store/layoutSlice";
-import { RootState } from "../../../store/store";
 import { ThemeSwitch } from "../theme-switch";
 import { FaShoppingCart } from "react-icons/fa";
 
-export const Header = () => {
-  const { toggleTheme } = useTheme();
-  const isSideCartOpen = useSelector(
-    (state: RootState) => state.layout.isSideCartOpen
-  );
+export const Header: React.FC = () => {
   const dispatch = useDispatch();
 
-  const handleToggleSideCart = () => {
-    dispatch(toggleSideCart()); // Використовуйте action creator для зміни стану
-  };
+  const handleToggleSideCart = React.useCallback(() => {
+    dispatch(toggleSideCart());
+  }, [])
 
   return (
     <header className={styles.header}>

@@ -5,8 +5,7 @@ import styles from './logo.module.scss'
 export const Logo: React.FC = () => {
   return (
     <div className={styles.logo}>
-      <FiShoppingCart className={styles.logo_icon} />
-      <span className={styles.logo_text}>My Shop</span>
+      <span className={styles.logo_text}>Logo</span>
     </div>
   );
 };

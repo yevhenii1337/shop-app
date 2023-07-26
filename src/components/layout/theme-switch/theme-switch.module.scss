@@ -5,6 +5,10 @@
   background-color: #ddd;
   position: relative;
   cursor: pointer;
+  
+  @media (max-width: 500px) {
+    display: none;
+  }
 
   .switchKnob {
     width: 20px;
